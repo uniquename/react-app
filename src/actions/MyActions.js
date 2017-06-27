@@ -1,23 +1,30 @@
 import * as actionTypes from './actionTypes';
 
+
+
+
+
+
 //export function myClick(text) {
-export const myClick = (text) => dispatch => {
-  console.log(text);
+export function myClick (text)  {
 
-  dispatch(mySimpleAction());
+  return function(dispatch, getState){
 
-  return {
-    type: actionTypes.MY_CLICK,
-    text
-  };
+    console.log(text);
+    dispatch(mySimpleAction(text));
+
+    return {
+      type: actionTypes.MY_CLICK,
+      text
+    };
+  }
 }
+
 
 
 //export function myClick(text) {
 export const mySimpleAction = (text) => {
   console.log('MY_SIMPLE');
-
-
 
   return {
     type: actionTypes.MY_SIMPLE,
@@ -32,12 +39,4 @@ export function myInitLoader(argument) {
     argument
   }
 }
-/*
-export const myDispatcher = (someVar) => dispatch => {
-    dispatch({ type: 'MY_CLICK' });
 
-    $.get(API_URL, { top: top, skip: skip })
-        .done((data, testStatus, jqXHR) => {
-            dispatch({ type: 'LIST.SUCCESS', data: data });
-        });
-};*/

@@ -3,12 +3,15 @@
 // With Redux, the actual stores are in /reducers.
 
 import {createStore, compose, applyMiddleware} from 'redux';
-import thunkMiddleware from 'redux-thunk';
-import rootReducer from '../reducers';
-import { createLogger } from 'redux-logger'
+
 import { routerMiddleware } from 'react-router-redux'
+import { createLogger } from 'redux-logger'
+import thunkMiddleware from 'redux-thunk'
+import promise from "redux-promise-middleware";
 
 import createHistory from 'history/createBrowserHistory'
+
+import rootReducer from '../reducers';
 
 const loggerMiddleware = createLogger()
 const history = createHistory()
@@ -17,10 +20,11 @@ export default function configureStore(initialState) {
   const middewares = [
     // Add other middleware on this line...
     routerMiddleware(history),
-    //loggerMiddleware,
+    loggerMiddleware,
     // thunk middleware can also accept an extra argument to be passed to each thunk action
     // https://github.com/gaearon/redux-thunk#injecting-a-custom-argument
     thunkMiddleware,
+    promise()
   ];
 
   const store = createStore(rootReducer, initialState, compose(

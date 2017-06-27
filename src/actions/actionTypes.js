@@ -8,6 +8,11 @@ export const CLEAR_MARKED = 'CLEAR_MARKED';
 
 export const MY_CLICK = 'MY_CLICK';
 export const MY_INIT_LOADER = 'MY_INIT_LOADER';
-
-
 export const MY_SIMPLE = 'MY_SIMPLE';
+
+
+
+export const REQUEST_POSTS = 'REQUEST_POSTS';
+export const RECEIVE_POSTS = 'RECEIVE_POSTS';
+export const SELECT_REDDIT = 'SELECT_REDDIT';
+export const INVALIDATE_REDDIT = 'INVALIDATE_REDDIT';

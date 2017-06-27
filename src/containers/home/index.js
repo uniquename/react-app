@@ -12,59 +12,64 @@ import * as TodoActions from '../../actions/TodoActions';
 
 import * as MyActions from '../../actions/MyActions';
 
+import MyComponent from '../../components/MyComponent';
+
 
 class Home extends Component {
 
-  componentWillMount() {
-    console.log(this.props);
-    //this.props.dispatch(deleteTodo())
-  }
-
+/*
   constructor() {
     super();
   }
+*/
+
+  componentDidMount() {
+    this.props.actions.MyActions.myInitLoader();
+  }
+
+  componentWillMount() {
+    //this.props.dispatch(deleteTodo())
+  }
+
 
   goto(){
     //store.dispatch(push('/foo'))
   }
 
-    renderList() {
-        return this.props.users.map((user) => {
-            return (
-                <li
-                    key={user.id}
-                    onClick={() => this.props.selectUser(user)}
-                >
-                    {user.first} {user.last}
-                </li>
-            );
-        });
-    }
+  renderList() {
+    return this.props.users.map((user) => {
+      return (
+        <li
+        key={user.id}
+        onClick={() => this.props.selectUser(user)}
+        >
+        {user.first} {user.last}
+        </li>
+        );
+    });
+  }
 
 
   render() {
-    const { todos, actions } = this.props;
-
-    console.log(actions);
+    const { actions } = this.props;
 
     return (
       <div >
+        <MyComponent someprop="test" />
 
-      <ul>
-          { this.renderList()  }
-      </ul>
+        <ul>
+        { /*this.renderList() */ }
+        </ul>
 
-
-      <button onClick={actions.MyActions.myClick}>
+        <button onClick={actions.MyActions.myClick}>
         Activate Lasers
-      </button>
-
-      <Link to="/page">About</Link>
-        <p >
-          To get , edit <code>src/App.js</code> and save to reload.
-        </p>
+        </button>
+        <div>
+        <Link to="/page">Page</Link>
+        <Link to="/contacts">Contacts</Link>
+        </div>
       </div>
-    );
+      );
   }
 }
 
